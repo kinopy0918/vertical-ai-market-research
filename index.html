@@ -1,0 +1,1096 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>5業種AI事業の検証</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: iOS「設定」のような角丸グループを縦に積み、上部はすりガラスの目次バー。各章は大見出し→図→根拠の順 */
+:root{
+  --bg:#f2f2f7; --card:#ffffff; --fill:#e9e9ef; --fill2:#f5f5f8;
+  --label:#1d1d1f; --label2:rgba(60,60,67,.66); --label3:rgba(60,60,67,.42);
+  --sep:rgba(60,60,67,.16);
+  --blue:#007aff; --green:#248a3d; --green-f:#34c759; --orange:#c93400; --orange-f:#ff9500; --red:#d70015; --red-f:#ff3b30;
+  --indigo:#5856d6; --teal:#0a84a8; --brown:#8a6a45; --gray-f:#aeaeb2;
+  --bar:rgba(242,242,247,.72);
+  --font:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,monospace;
+  --r:16px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#000000; --card:#1c1c1e; --fill:#2c2c2e; --fill2:#232325;
+  --label:#f5f5f7; --label2:rgba(235,235,245,.66); --label3:rgba(235,235,245,.4);
+  --sep:rgba(84,84,88,.6);
+  --blue:#0a84ff; --green:#30d158; --green-f:#30d158; --orange:#ff9f0a; --orange-f:#ff9f0a; --red:#ff453a; --red-f:#ff453a;
+  --indigo:#7d7aff; --teal:#40c8e0; --brown:#c09a6b; --gray-f:#636366;
+  --bar:rgba(22,22,24,.72); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#000000; --card:#1c1c1e; --fill:#2c2c2e; --fill2:#232325;
+  --label:#f5f5f7; --label2:rgba(235,235,245,.66); --label3:rgba(235,235,245,.4);
+  --sep:rgba(84,84,88,.6);
+  --blue:#0a84ff; --green:#30d158; --green-f:#30d158; --orange:#ff9f0a; --orange-f:#ff9f0a; --red:#ff453a; --red-f:#ff453a;
+  --indigo:#7d7aff; --teal:#40c8e0; --brown:#c09a6b; --gray-f:#636366;
+  --bar:rgba(22,22,24,.72); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--label);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bar)}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:8px}
+
+/* すりガラスの目次バー */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bar);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.nav::after{content:"";position:absolute;left:0;right:0;bottom:-12px;height:12px;pointer-events:none;background:linear-gradient(var(--bar),transparent);opacity:.6}
+.nav-in{max-width:980px;margin:0 auto;display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none;padding-block:10px}
+.nav-in::-webkit-scrollbar{display:none}
+@media (max-width:760px){.nav-in{-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}}
+.nav b{font-size:15px;font-weight:700;margin-right:10px;white-space:nowrap;letter-spacing:-.01em}
+.nav a{font-size:13px;color:var(--label2);white-space:nowrap;padding:5px 10px;border-radius:999px}
+.nav a:hover{background:var(--fill);color:var(--label);text-decoration:none}
+
+.wrap{max-width:980px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:8px 72px}
+section{padding-top:56px;scroll-margin-top:56px}
+
+/* 文字の階層：大きいほど字間を詰める */
+.eyebrow{font-size:13px;font-weight:600;color:var(--blue);letter-spacing:.02em;margin:0 0 6px}
+h1{font-size:clamp(2.1rem,6vw,3.6rem);line-height:1.12;letter-spacing:-.03em;font-weight:800;margin:0;text-wrap:balance}
+h2{font-size:clamp(1.6rem,4vw,2.25rem);line-height:1.2;letter-spacing:-.025em;font-weight:800;margin:0 0 10px;text-wrap:balance}
+h1,h2,h3{word-break:auto-phrase}
+h3{font-size:1.15rem;line-height:1.35;letter-spacing:-.01em;font-weight:700;margin:0 0 6px}
+.lead{font-size:1.1rem;color:var(--label2);max-width:44em;margin:10px 0 0;text-wrap:pretty}
+p{margin:0}
+.small{font-size:13px;color:var(--label2)}
+.tiny{font-size:12px;color:var(--label3)}
+.num{font-variant-numeric:tabular-nums}
+
+/* 面 */
+.group{background:var(--card);border-radius:var(--r);overflow:hidden}
+.pad{padding:20px}
+.grid{display:grid;gap:12px}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:760px){.g3,.g2{grid-template-columns:minmax(0,1fr)}}
+.mt{margin-top:20px}.mt2{margin-top:12px}
+
+/* ヒーロー */
+.hero{padding-top:44px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:16px;font-size:13px;color:var(--label2)}
+.tile{background:var(--card);border-radius:var(--r);padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.tile .pill{align-self:flex-start}
+.tile .k{font-size:13px;color:var(--label2);font-weight:600}
+.tile .v{font-size:1.65rem;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+.tile .d{font-size:14px;color:var(--label2)}
+
+/* ステータスの札 */
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap;line-height:1.4}
+.pill svg{width:13px;height:13px}
+.ok{color:var(--green);background:color-mix(in srgb,var(--green-f) 16%,transparent)}
+.warn{color:var(--orange);background:color-mix(in srgb,var(--orange-f) 18%,transparent)}
+.bad{color:var(--red);background:color-mix(in srgb,var(--red-f) 15%,transparent)}
+.info{color:var(--blue);background:color-mix(in srgb,var(--blue) 13%,transparent)}
+.mute{color:var(--label2);background:var(--fill)}
+
+/* アイコン（アプリアイコン風の角丸正方形） */
+.ico{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;flex:none;color:#fff}
+.ico svg{width:20px;height:20px}
+.ico.sm{width:22px;height:22px;border-radius:6px}.ico.sm svg{width:13px;height:13px}
+.ico.lg{width:52px;height:52px;border-radius:13px}.ico.lg svg{width:30px;height:30px}
+.c-jokaso{background:linear-gradient(180deg,#5ac8fa,#0a84a8)}
+.c-sanpai{background:linear-gradient(180deg,#a2845e,#7a5c3a)}
+.c-shobo{background:linear-gradient(180deg,#ff6b5e,#d70015)}
+.c-oroshi{background:linear-gradient(180deg,#8e8cf0,#4f4cc9)}
+.c-bilmen{background:linear-gradient(180deg,#4aa3ff,#0060df)}
+.c-gray{background:linear-gradient(180deg,#a1a1a6,#6e6e73)}
+.c-green{background:linear-gradient(180deg,#4cd964,#1f9e3e)}
+.c-orange{background:linear-gradient(180deg,#ffb340,#e07800)}
+.c-purple{background:linear-gradient(180deg,#d07cf0,#9b3fc4)}
+
+/* iOS風のリスト行 */
+.row{display:flex;gap:14px;align-items:flex-start;padding:14px 18px;position:relative}
+.row+.row::before{content:"";position:absolute;top:0;right:0;left:66px;height:1px;background:var(--sep)}
+.row.noico+.row.noico::before{left:18px}
+.row .body{min-width:0;flex:1}
+.row .t{font-weight:600}
+.row .s{font-size:14px;color:var(--label2);margin-top:2px}
+
+/* 横棒グラフ */
+.chart{padding:18px 20px 16px}
+.chart .cap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;margin-bottom:14px}
+.bars{display:grid;grid-template-columns:minmax(84px,150px) minmax(0,1fr);gap:10px 14px;align-items:center}
+.bars .lab{font-size:13px;line-height:1.35;color:var(--label)}
+.bars .lab span{display:block;font-size:12px;color:var(--label3)}
+.track{position:relative;height:26px}
+.track .b{position:absolute;top:5px;height:16px;border-radius:5px}
+.track.tall .ref{top:0;bottom:auto;height:26px}
+.track.tall{height:42px}.track .note{position:absolute;left:0;top:24px;font-size:12px;color:var(--label2);white-space:nowrap}
+.track .v{position:absolute;top:3px;font-size:12px;font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--label)}
+.axis{position:relative;height:18px;margin-top:6px}
+.axis span:first-child{transform:none}
+.axis span.end{transform:translateX(-100%)}
+.axis span{position:absolute;transform:translateX(-50%);font-size:12px;color:var(--label3);font-variant-numeric:tabular-nums;white-space:nowrap}
+.gridlines{position:absolute;inset:0;pointer-events:none}
+.gridlines i{position:absolute;top:0;bottom:0;width:1px;background:var(--sep)}
+.ref{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--label);opacity:.8;border-radius:1px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--label2)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.hscroll{overflow-x:auto}
+
+/* 1時間の行き先（分岐図） */
+.fork{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,2.2fr);gap:14px;align-items:center}
+.fork .src{background:var(--fill2);border-radius:14px;padding:18px;text-align:center}
+.fork .src .big{font-size:2rem;font-weight:800;letter-spacing:-.02em}
+.fork .arr{color:var(--label3)}
+.fork .dst{display:grid;gap:10px}
+.dstc{display:flex;gap:12px;align-items:flex-start;background:var(--fill2);border-radius:14px;padding:12px 14px}
+.dstc .tag{font-weight:800;font-size:15px;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;color:#fff;flex:none}
+@media (max-width:760px){.fork{grid-template-columns:minmax(0,1fr)}.fork .arr{transform:rotate(90deg);justify-self:center}}
+
+/* セグメントコントロール */
+.seg{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));background:var(--fill);border-radius:10px;padding:2px;gap:0}
+.seg button{position:relative;z-index:1;appearance:none;border:0;background:none;font:inherit;font-size:13px;font-weight:600;color:var(--label);padding:8px 4px;border-radius:8px;cursor:pointer;line-height:1.25;transition:transform .1s ease-out}
+.seg button:active{transform:scale(.96)}
+.seg .thumb{position:absolute;z-index:0;top:2px;bottom:2px;left:2px;width:calc((100% - 4px)/5);border-radius:8px;background:var(--card);box-shadow:0 3px 8px rgba(0,0,0,.12),0 0 0 .5px rgba(0,0,0,.04);transition:transform .38s cubic-bezier(.25,1,.3,1)}
+.panel-head{display:flex;gap:16px;align-items:center;padding:20px}
+.panel-head .body{min-width:0;flex:1}
+.kv{display:grid;grid-template-columns:minmax(0,170px) minmax(0,1fr);gap:0}
+.kv>div{padding:12px 18px;border-top:1px solid var(--sep);font-size:14px;min-width:0}
+.kv>div:nth-child(odd){color:var(--label2);font-weight:600;display:flex;gap:8px;align-items:flex-start}
+.kv .n{font-family:var(--mono);font-size:12px;color:var(--label3);padding-top:2px}
+.est{font-size:12px;font-weight:700;color:var(--orange);border:1px solid currentColor;border-radius:4px;padding:0 4px;margin-left:4px;vertical-align:1px;white-space:nowrap}
+@media (max-width:560px){.kv{grid-template-columns:minmax(0,1fr)}.kv>div:nth-child(odd){padding-bottom:0}.kv>div:nth-child(even){border-top:0;padding-top:4px}}
+.fade{animation:fade .28s ease-out}
+@keyframes fade{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+/* 判定表 */
+.matrix{width:100%;border-collapse:collapse;font-size:14px;min-width:620px}
+.matrix th,.matrix td{padding:12px 10px;text-align:center;border-top:1px solid var(--sep)}
+.matrix thead th{border-top:0;font-size:12px;color:var(--label2);font-weight:600;vertical-align:bottom}
+.matrix th:first-child,.matrix td:first-child{text-align:left;padding-left:18px}
+.matrix tbody th{font-weight:600}
+.matrix .who{display:flex;align-items:center;gap:10px;white-space:nowrap}
+.matrix .who .ico{width:26px;height:26px;border-radius:7px}.matrix .who .ico svg{width:16px;height:16px}
+.dots{display:inline-flex;gap:4px}
+.dots i{width:9px;height:9px;border-radius:50%;background:var(--fill)}
+.dots.l3 i{background:var(--green-f)}
+.dots.l2 i:nth-child(-n+2){background:var(--orange-f)}
+.dots.l1 i:nth-child(1){background:var(--red-f)}
+.q{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--fill);color:var(--label2);font-size:12px;font-weight:700}
+.dl{display:block;font-size:12px;color:var(--label3);margin-top:3px}
+tr.pick td,tr.pick th{background:color-mix(in srgb,var(--blue) 7%,transparent)}
+
+/* 共通の流れ（パイプライン） */
+.pipe{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;position:relative}
+.step{background:var(--fill2);border-radius:14px;padding:16px 14px;display:flex;flex-direction:column;gap:8px;position:relative;min-width:0}
+.step .ico{width:38px;height:38px;border-radius:10px}
+.step b{font-size:15px}
+.step p{font-size:13px;color:var(--label2)}
+.step:not(:last-child)::after{content:"";position:absolute;right:-9px;top:30px;width:8px;height:8px;border-top:2px solid var(--label3);border-right:2px solid var(--label3);transform:rotate(45deg)}
+@media (max-width:760px){.pipe{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.step:not(:last-child)::after{display:none}}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:999px;background:var(--fill2);font-size:13px;font-weight:600}
+.chip .ico{width:24px;height:24px;border-radius:7px}.chip .ico svg{width:14px;height:14px}
+
+/* 順位 */
+.rank{display:flex;gap:16px;align-items:flex-start;padding:18px 20px}
+.rank+.rank{border-top:1px solid var(--sep)}
+.rank .no{font-size:2rem;font-weight:800;letter-spacing:-.03em;width:2ch;color:var(--label3);line-height:1.1;font-variant-numeric:tabular-nums}
+.rank.top .no{color:var(--blue)}
+.rank .body{min-width:0;flex:1}
+
+/* 15社の枠 */
+.slots{display:grid;grid-template-columns:minmax(110px,1.3fr) repeat(3,minmax(0,1fr));gap:6px;align-items:center;min-width:420px}
+.slots .h{font-size:12px;color:var(--label2);font-weight:600;text-align:center}
+.slots .who{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600}
+.slots .who .ico{width:24px;height:24px;border-radius:7px}.slots .who .ico svg{width:14px;height:14px}
+.slot{height:34px;border-radius:9px;border:1.5px dashed var(--sep);display:grid;place-items:center;font-size:12px;color:var(--label3)}
+
+/* A〜D */
+.abcd{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:860px){.abcd{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.abcd{grid-template-columns:minmax(0,1fr)}}
+.abc{background:var(--card);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.abc .tag{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:16px}
+.abc .how{font-size:13px;color:var(--label2);border-top:1px solid var(--sep);padding-top:8px;margin-top:auto}
+.rules{counter-reset:r}
+.rules .row .nb{counter-increment:r;width:26px;height:26px;border-radius:50%;background:var(--label);color:var(--card);display:grid;place-items:center;font-weight:700;font-size:13px;flex:none}
+.rules .row .nb::before{content:counter(r)}
+
+/* 質問 */
+.qa{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0}
+.qa>div{padding:12px 18px;border-top:1px solid var(--sep);font-size:14px;min-width:0}
+.qa>div:nth-child(-n+2){border-top:0}
+.qa .hd{font-size:12px;color:var(--label2);font-weight:600;padding-block:10px}
+.qa>div:nth-child(4n+3),.qa>div:nth-child(4n+4){background:var(--fill2)}
+@media (max-width:560px){.qa{grid-template-columns:minmax(0,1fr)}.qa .hd{display:none}.qa>div:nth-child(even){border-top:0;padding-top:0;color:var(--label2)}.qa>div:nth-child(odd){font-weight:600}.qa>div:nth-child(4n+3),.qa>div:nth-child(4n+4){background:none}}
+
+details{border-top:1px solid var(--sep)}
+details:first-child{border-top:0}
+summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:14px 18px;font-weight:600}
+summary::-webkit-details-marker{display:none}
+summary .chev{margin-left:auto;color:var(--label3);transition:transform .25s cubic-bezier(.25,1,.3,1)}
+details[open] summary .chev{transform:rotate(90deg)}
+details .inner{padding:0 18px 16px 64px;font-size:14px;color:var(--label2)}
+
+.vs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+@media (max-width:760px){.vs{grid-template-columns:minmax(0,1fr)}}
+.big-n{font-size:1.5rem;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.callout{background:color-mix(in srgb,var(--blue) 9%,var(--card));border-radius:var(--r);padding:18px 20px;display:flex;gap:14px;align-items:flex-start}
+.src-list{columns:2;column-gap:28px;font-size:13px;padding:18px 20px 18px 38px;margin:0}
+.src-list li{break-inside:avoid;margin-bottom:6px;color:var(--label2)}
+@media (max-width:640px){.src-list{columns:1}}
+footer{margin-top:40px;font-size:12px;color:var(--label3)}
+
+@media (max-width:560px){
+  .hscroll>div{min-width:0!important}
+  .bars{grid-template-columns:minmax(0,1fr);gap:2px}
+  .bars .lab{margin-top:10px}
+  .bars>div:empty{display:none}
+  .track{height:44px}.track.tall{height:44px}
+  .track .b{top:24px}
+  .track .ref,.track.tall .ref{top:20px;bottom:0;height:auto}
+  .track .v{top:0!important;left:0!important;right:auto!important}
+  .track .note{top:0}
+  .matrix{min-width:0;font-size:12px}
+  .matrix th,.matrix td{padding:10px 4px}
+  .matrix th:first-child,.matrix td:first-child{padding-left:12px}
+  .matrix .who .full{display:none}
+  .matrix .who .short{display:inline!important}
+  .matrix thead th{font-size:11px}
+  .matrix .dl{display:none}
+  #wageAxis span:nth-child(3){display:none}
+  .slots{min-width:0;grid-template-columns:minmax(84px,1.2fr) repeat(3,minmax(0,1fr))}
+}
+
+/* 構想：2層の図 */
+.layers{display:grid;gap:10px}
+.lay-top,.lay-bottom{border-radius:14px;padding:14px;position:relative}
+.lay-top{background:var(--fill2)}
+.lay-bottom{background:color-mix(in srgb,var(--blue) 10%,var(--card));border:1px solid color-mix(in srgb,var(--blue) 30%,transparent)}
+.lay-tag{display:block;font-size:12px;font-weight:700;color:var(--label2);margin-bottom:10px;letter-spacing:.02em}
+.lay-bottom .lay-tag{color:var(--blue)}
+.lay-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.lay-col{background:var(--card);border-radius:12px;padding:12px;display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0}
+.lay-col b{font-size:15px}.lay-col span:last-child{font-size:12px;color:var(--label2)}
+.lay-col.dim{opacity:.6;border:1.5px dashed var(--sep);background:transparent}
+.lay-bar{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.lay-bar span{display:flex;align-items:center;gap:8px;background:var(--card);border-radius:10px;padding:10px 12px;font-size:14px;font-weight:600;min-width:0}
+.lay-bar svg{width:18px;height:18px;color:var(--blue);flex:none}
+@media (max-width:640px){.lay-cols,.lay-bar{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.msg{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:12px;margin-top:10px;font-weight:600}
+.msg svg{width:18px;height:18px;flex:none;margin-top:3px}
+.msg.no{background:var(--fill2);color:var(--label2)}.msg.no span{text-decoration:line-through;text-decoration-color:var(--red-f)}.msg.no svg{color:var(--red)}
+.msg.yes{background:color-mix(in srgb,var(--green-f) 14%,var(--card))}.msg.yes svg{color:var(--green)}
+.rev{display:flex;gap:12px;align-items:flex-start;margin-top:12px}
+.rev .tag{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;color:#fff;font-weight:800;flex:none}
+.flow7{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;counter-reset:f}
+.flow7 li{counter-increment:f;background:var(--fill2);border-radius:12px;padding:12px 8px 12px;font-size:13px;text-align:center;position:relative;min-width:0}
+.flow7 li::before{content:counter(f);display:grid;place-items:center;width:24px;height:24px;margin:0 auto 6px;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;font-size:12px}
+.flow7 li:first-child::before{background:var(--green-f)}
+@media (max-width:760px){.flow7{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:420px){.flow7{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.conds{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--sep)}
+.conds div{display:flex;gap:10px;align-items:flex-start;padding:12px 18px;font-size:14px;border-bottom:1px solid var(--sep);min-width:0}
+.conds div:nth-child(odd){border-right:1px solid var(--sep)}
+.conds div:last-child{border-bottom:0}
+.conds svg{width:18px;height:18px;color:var(--blue);flex:none;margin-top:2px}
+@media (max-width:640px){.conds{grid-template-columns:minmax(0,1fr)}.conds div:nth-child(odd){border-right:0}}
+.hrow{display:flex;gap:14px;align-items:center;padding:14px 18px;color:var(--label);position:relative;transition:background .15s}
+.hrow:hover{background:var(--fill2);text-decoration:none}
+.hrow:active{transform:scale(.995)}
+.hrow+.hrow::before{content:"";position:absolute;top:0;left:62px;right:0;height:1px;background:var(--sep)}
+.hrow .hn{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--blue);background:color-mix(in srgb,var(--blue) 12%,transparent);border-radius:8px;padding:4px 0;width:32px;text-align:center;flex:none}
+.hrow .body{min-width:0;flex:1}.hrow .t{font-weight:600}.hrow .s{font-size:13px;color:var(--label2);margin-top:2px}
+.hrow .go{width:14px;height:14px;color:var(--label3);flex:none}
+@media (max-width:640px){.hrow{flex-wrap:wrap}.hrow .body{flex-basis:calc(100% - 50px)}.hrow .pill{margin-left:46px}.hrow .go{display:none}}
+.core{background:var(--card);border-radius:var(--r);padding:20px 22px;border:1.5px solid color-mix(in srgb,var(--blue) 45%,transparent)}
+.core-tag{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:var(--blue);border-radius:999px;padding:3px 10px;margin-bottom:10px}
+.core p{font-size:1.15rem;line-height:1.6;font-weight:500}
+.gtag{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:7px;color:#fff;font-size:13px;font-weight:800;margin-right:8px;vertical-align:-3px}
+.hl{margin-left:auto;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--blue);background:color-mix(in srgb,var(--blue) 12%,transparent);border-radius:6px;padding:1px 6px;flex:none}
+.conds div.wide{grid-column:1/-1;border-right:0}
+.bld{display:grid;grid-template-columns:minmax(0,1.3fr) auto minmax(0,1fr);gap:16px;align-items:center}
+.bld-house{position:relative;padding-top:26px}
+.bld-roof{position:absolute;top:0;left:12%;right:12%;height:28px;background:var(--fill);clip-path:polygon(8% 100%,50% 0,92% 100%)}
+.bld-body{background:var(--fill2);border:1.5px solid var(--sep);border-radius:6px 6px 12px 12px;padding:14px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.doc{display:flex;align-items:center;gap:8px;border-radius:10px;padding:9px 10px;font-size:13px;font-weight:600;background:var(--card);border-left:4px solid var(--gray-f);min-width:0}
+.doc svg{width:16px;height:16px;flex:none;color:var(--label2)}
+.doc.d-main{border-left-color:var(--blue)}.doc.d-main svg{color:var(--blue)}
+.doc.d-new{border-left-color:var(--green-f);grid-column:1/-1;background:color-mix(in srgb,var(--green-f) 12%,var(--card))}.doc.d-new svg{color:var(--green)}
+.bld-cap{display:block;text-align:center;font-size:12px;color:var(--label2);margin-top:8px}
+.bld-arr{color:var(--label3)}
+.bld-side{display:grid;gap:8px;justify-items:stretch}
+.bld-arr2{color:var(--label3);transform:rotate(90deg);justify-self:center}
+.bld-node{display:flex;gap:12px;align-items:flex-start;background:var(--fill2);border-radius:14px;padding:14px;min-width:0}
+.bld-node b{display:block;font-size:15px}.bld-node span:not(.ico){font-size:13px;color:var(--label2)}
+.bld-node.n-mgr{background:color-mix(in srgb,var(--indigo) 12%,var(--card));border:1.5px solid color-mix(in srgb,var(--indigo) 35%,transparent)}
+@media (max-width:760px){.bld{grid-template-columns:minmax(0,1fr)}.bld-arr{transform:rotate(90deg);justify-self:center}}
+.matrix tr.grp th{background:var(--fill2);font-size:12px;color:var(--label2);padding-block:8px;text-align:left}
+.matrix td.vd{text-align:left;font-size:12px;color:var(--label2)}
+.rk-head,.rk{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr) minmax(0,1.2fr);gap:16px;padding:14px 18px}
+.rk-head{font-size:12px;font-weight:600;color:var(--label2);padding-block:10px}
+.rk{border-top:1px solid var(--sep);font-size:14px}
+.rk p{color:var(--label2);min-width:0}
+.rk p:last-child{color:var(--label);background:color-mix(in srgb,var(--blue) 7%,transparent);border-radius:10px;padding:10px 12px}
+.rk-t{display:flex;gap:10px;align-items:flex-start;min-width:0}
+.rk-t .ico{width:30px;height:30px;border-radius:8px}.rk-t .ico svg{width:17px;height:17px}
+@media (max-width:760px){.rk-head{display:none}.rk{grid-template-columns:minmax(0,1fr);gap:8px}}
+.abc .tag svg{color:#fff}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media (prefers-reduced-transparency:reduce){.nav{background:var(--bg);backdrop-filter:none;-webkit-backdrop-filter:none}}
+</style>
+</head>
+<body>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3.5c3.2 4 5.5 7.2 5.5 10.2a5.5 5.5 0 0 1-11 0c0-3 2.3-6.2 5.5-10.2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9.5 14.5a2.6 2.6 0 0 0 2.5 2.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2.5 6.5h11v9h-11zM13.5 9.5h4l3 3.2v2.8h-7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="6.5" cy="17" r="1.8" fill="currentColor"/><circle cx="17" cy="17" r="1.8" fill="currentColor"/></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3c.6 3-2.2 4.6-3.6 7A6.2 6.2 0 0 0 12 21a6.2 6.2 0 0 0 5.6-8.8c-.5 1.4-1.4 2.1-2.4 2.3.5-3.6-1-8.7-3.2-11.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-fax" viewBox="0 0 24 24"><path d="M7 9V3.5h8l2 2V9" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><rect x="3" y="9" width="18" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 13h4M7 16h7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="17.5" cy="13" r="1.2" fill="currentColor"/></symbol>
+    <symbol id="i-building" viewBox="0 0 24 24"><path d="M4.5 21V4.5h10V21M14.5 9.5h5V21M2.5 21h19" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><path d="M8 8h3M8 12h3M8 16h3M17 13v.01M17 16.5v.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 4l9 15.5H3z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M12 10v4.2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.2" fill="currentColor"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-yen" viewBox="0 0 24 24"><path d="M6.5 4l5.5 8 5.5-8M12 12v8M8 13h8M8 16.5h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24"><path d="M3.5 8.5h3.2L8.5 6h7l1.8 2.5h3.2V19h-17z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="13.2" r="3.3" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3.5h8l4 4V20.5H6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12h6M9 15.5h6M14 3.5V8h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.5 4.2a4.5 4.5 0 0 0-5 6.1L4 15.8 6.2 18l5.5-5.5a4.5 4.5 0 0 0 6.1-5l-2.6 2.6-2.3-.5-.5-2.3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6.5h11M9 12h11M9 17.5h11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="4.5" cy="6.5" r="1.3" fill="currentColor"/><circle cx="4.5" cy="12" r="1.3" fill="currentColor"/><circle cx="4.5" cy="17.5" r="1.3" fill="currentColor"/></symbol>
+    <symbol id="i-people" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 19.5c.6-3.3 3-5 6-5s5.4 1.7 6 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M16 5.6a3 3 0 0 1 0 5.8M18 14.8c1.6.6 2.7 2 3 4.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V4M4 20h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M7.5 15l4-4.5 3 2.5 5-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.7-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.8-7.5-9.5V6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 3L5 13.5h6L10 21l8-10.5h-6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 5.5l6.5 6.5L9 18.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13.5 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-q" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.6 9.5a2.5 2.5 0 1 1 3.4 2.3c-.7.3-1 .8-1 1.6v.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="16.8" r="1.1" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<nav class="nav" aria-label="目次">
+  <div class="nav-in">
+    <b>5業種AI事業の検証</b>
+    <a href="#idea">何をするか</a>
+    <a href="#hypo">確かめる仮説</a>
+    <a href="#check">時給と時間</a>
+    <a href="#five">5業種</a>
+    <a href="#compete">競合と価格</a>
+    <a href="#pay">払ってもらえるか</a>
+    <a href="#pick">調査からの提案</a>
+    <a href="#others">他の業界</a>
+    <a href="#hearing">15社ヒアリング</a>
+    <a href="#risk">リスクと体制</a>
+    <a href="#open">未確定</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ヒーロー：何をしようとしているか -->
+<header class="hero" id="idea">
+  <p class="eyebrow">新規事業構想｜業種特化型AI業務改善</p>
+  <h1>困りごとを見つけ、AIで直し、<br>同じ業種に広げて売る。</h1>
+  <p class="lead">目指すのは「AI導入の代行会社」ではありません。企業が本当に困っている業務を見つけ、AIで大きな経済価値を生み、同じ解決策を多くの企業に売れる事業です。このページは、その前提を市場調査で確かめた結果です。</p>
+  <div class="meta"><span>2026年10月18日 調査</span><span>出典つきの数字＝事実</span><span><span class="est">推定</span> ＝FOXの計算</span></div>
+</header>
+
+<section style="padding-top:36px">
+  <p class="eyebrow">1｜何をしようとしているか</p>
+  <h2>業種は狭く、仕組みは共通に。</h2>
+  <p class="lead">営業では「その業種の専門家」として入り、裏側のAIは複数の業種で使い回します。大手と正面から戦わず、特定の業種・業務に集中する戦い方です。</p>
+
+  <div class="group pad mt">
+    <h3>事業の形：専門性で売り、共通の仕組みで作る</h3>
+    <p class="small" style="margin-bottom:16px">構想では、最初に<b>浄化槽</b>で実績を作り、同じ流れを持つ点検系の業種へ横に広げる計画でした（調査からの入口の提案は2章の最後）。</p>
+    <div class="layers">
+      <div class="lay-top">
+        <span class="lay-tag">営業で見せる顔</span>
+        <div class="lay-cols">
+          <div class="lay-col"><span class="ico c-jokaso"><svg><use href="#i-drop"/></svg></span><b>浄化槽</b><span>構想の入口</span></div>
+          <div class="lay-col"><span class="ico c-shobo"><svg><use href="#i-flame"/></svg></span><b>消防設備</b><span>点検・見積</span></div>
+          <div class="lay-col"><span class="ico c-bilmen"><svg><use href="#i-building"/></svg></span><b>ビルメン</b><span>貯水槽・設備</span></div>
+          <div class="lay-col dim"><span class="ico c-gray"><svg><use href="#i-list"/></svg></span><b>次の業種</b><span>同じ流れなら</span></div>
+        </div>
+      </div>
+      <div class="lay-bottom">
+        <span class="lay-tag">裏側で共通にするAI</span>
+        <div class="lay-bar">
+          <span><svg><use href="#i-list"/></svg>点検記録</span>
+          <span><svg><use href="#i-camera"/></svg>写真整理</span>
+          <span><svg><use href="#i-doc"/></svg>報告書</span>
+          <span><svg><use href="#i-yen"/></svg>見積・請求</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid g2 mt2">
+    <div class="group pad">
+      <h3>売り方：入口は「診断」</h3>
+      <div class="msg no"><svg><use href="#i-x"/></svg><span>「AIを導入しませんか？」</span></div>
+      <div class="msg yes"><svg><use href="#i-check"/></svg><span>「今の業務をどれだけ効率化できるか、調べませんか？」</span></div>
+      <p class="small mt2">買う理由は2つと考えています。<b>同業がAIで速く・安くなる危機感</b>（事実を確認した事例だけ使う）と、<b>削れる時間・増える利益の金額</b>です。</p>
+    </div>
+    <div class="group pad">
+      <h3>収益は2本</h3>
+      <div class="rev"><span class="tag" style="background:var(--blue)">①</span><div><b>導入と運用</b><p class="small">初期費用＋月額運用＋追加開発。価格は、経済価値が分かるまで決めない。構想時の効果の試算は、1社あたり<b>月57〜90時間 × 時給2,500円 ＝ 月約14〜23万円</b>。</p></div></div>
+      <div class="rev"><span class="tag" style="background:var(--indigo)">②</span><div><b>共通課題の商品化</b><p class="small">多くの顧客に共通する困りごとを、新しいサービス・システムとして事業にする。</p></div></div>
+    </div>
+  </div>
+
+  <div class="group pad mt2">
+    <h3>提供の流れ</h3>
+    <ol class="flow7">
+      <li><b>業務診断</b></li>
+      <li><b>非効率を特定</b></li>
+      <li><b>改善を設計</b></li>
+      <li><b>既存ツールを導入</b></li>
+      <li><b>足りない所だけ開発</b></li>
+      <li><b>教育・定着</b></li>
+      <li><b>効果を測って改善</b></li>
+    </ol>
+    <p class="small mt2">既存のシステムやAIツールを先に使い、足りない所だけ社内（樹下・バル）で開発します。ゼロからは作りません。</p>
+  </div>
+
+  <div class="group mt2">
+    <div class="row noico" style="padding-top:16px"><div class="body"><h3 style="margin:0">狙う市場の条件</h3><div class="s">「競合がいない市場」ではなく「競合が解決しきれていない課題」を探す。右のH番号は、2章で確かめた仮説です。</div></div></div>
+    <div class="conds">
+      <div><svg><use href="#i-people"/></svg>全国に一定数の顧客企業がいる</div>
+      <div><svg><use href="#i-clock"/></svg>くり返しの作業が多く、人手に頼っている</div>
+      <div><svg><use href="#i-list"/></svg>会社をまたいで課題が共通している<span class="hl">H4</span></div>
+      <div><svg><use href="#i-wrench"/></svg>既存システムで解けない作業が残っている<span class="hl">H4</span></div>
+      <div><svg><use href="#i-chart"/></svg>削れる時間・費用を測れる<span class="hl">H2</span></div>
+      <div><svg><use href="#i-arrow"/></svg>1社の事例を他社に横展開できる<span class="hl">H6</span></div>
+      <div class="wide"><svg><use href="#i-shield"/></svg>大手AI企業の標準サービスでは届かない<span class="hl">H5</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 確かめる仮説 -->
+<section id="hypo">
+  <p class="eyebrow">2｜何の仮説を確かめたか</p>
+  <h2>一番大事な問いを、<br>7つの仮説に分けて確かめた。</h2>
+  <div class="core mt">
+    <span class="core-tag">最重要の仮説</span>
+    <p>特定の業界で、<b>複数の会社に共通する未解決の業務</b>をAIで大きく効率化し、<b>その効果をお金の価値として示せるか</b>。</p>
+  </div>
+  <p class="lead">これを「お金の価値として示せるか」「共通の未解決業務があるか」「払ってもらえるか」の3つに分け、7つの仮説にしました。各行を押すと、判定の根拠の章へ移ります。</p>
+
+  <h3 class="mt"><span class="gtag" style="background:var(--green-f)">A</span>お金の価値として示せるか</h3>
+  <div class="group mt2">
+    <a class="hrow" href="#check"><span class="hn">H1</span><div class="body"><div class="t">時給2,500円で、削れる時間をお金に換算できる</div><div class="s">事務員（¥2,424）・設備の技術者なら近い。ビルメンで清掃員が書類を書くなら¥1,849で、効果は約26%小さい<span class="est">推定</span>。</div></div><span class="pill ok"><svg><use href="#i-check"/></svg>事務員・技術者なら妥当</span><svg class="go"><use href="#i-chev"/></svg></a>
+    <a class="hrow" href="#check"><span class="hn">H2</span><div class="body"><div class="t">1社あたり月57〜90時間を削れる</div><div class="s">公開データで確かめられた業種はゼロ。計算できた浄化槽は平均的な業者で月18〜38時間<span class="est">推定</span>。届くのは中堅以上。</div></div><span class="pill bad"><svg><use href="#i-x"/></svg>根拠なし</span><svg class="go"><use href="#i-chev"/></svg></a>
+    <a class="hrow" href="#check"><span class="hn">H3</span><div class="body"><div class="t">削れた時間は、そのまま会社のお金になる</div><div class="s">勤務時間内で空いた時間は給料を減らさない。現金になるのは残業・外注・採用が減る分だけ。</div></div><span class="pill bad"><svg><use href="#i-x"/></svg>大半はならない</span><svg class="go"><use href="#i-chev"/></svg></a>
+  </div>
+
+  <h3 class="mt"><span class="gtag" style="background:var(--blue)">B</span>共通の未解決業務があるか</h3>
+  <div class="group mt2">
+    <a class="hrow" href="#five"><span class="hn">H4</span><div class="body"><div class="t">選んだ5業種に、競合が解けていない共通の困りごとがある</div><div class="s">ビルメンと消防は強い。卸は困りごとは強いが競合が多い。浄化槽は単価が低く、産廃は既存ソフトが強い。</div></div><span class="pill warn"><svg><use href="#i-warn"/></svg>業種で分かれる</span><svg class="go"><use href="#i-chev"/></svg></a>
+    <a class="hrow" href="#compete"><span class="hn">H5</span><div class="body"><div class="t">大手AIの標準サービスでは届かない</div><div class="s">JAPAN AIなどは業種の書類を扱わず、月13万円〜。ただし比較相手は、業種ごとの安い既存ソフト。</div></div><span class="pill ok"><svg><use href="#i-check"/></svg>正しい</span><svg class="go"><use href="#i-chev"/></svg></a>
+    <a class="hrow" href="#pick"><span class="hn">H6</span><div class="body"><div class="t">業種は狭く、技術は横に広げられる</div><div class="s">ビルメン・消防・浄化槽は「点検→写真→報告書→見積」が共通。卸と産廃は別の仕組みが要る。</div></div><span class="pill ok"><svg><use href="#i-check"/></svg>点検系なら見込みあり</span><svg class="go"><use href="#i-chev"/></svg></a>
+  </div>
+
+  <h3 class="mt"><span class="gtag" style="background:var(--orange-f)">C</span>払ってもらえるか</h3>
+  <div class="group mt2">
+    <a class="hrow" href="#pay"><span class="hn">H7</span><div class="body"><div class="t">顧客はお金を払う（競合が少ないのは、払わないからではない）</div><div class="s">効果が見えないものには払わない。月5万円を超える価格が通るのは、利益が増える話のときだけ。</div></div><span class="pill warn"><svg><use href="#i-warn"/></svg>半分正しい</span><svg class="go"><use href="#i-chev"/></svg></a>
+  </div>
+
+  <div class="callout mt2">
+    <div class="ico c-bilmen"><svg><use href="#i-arrow"/></svg></div>
+    <div><h3>まとめると：減らした時間ではなく、増やせる仕事で売る</h3><p class="small">時給の置き方は合っていましたが、削減時間の量と「お金になるか」は根拠が弱いと分かりました。そこで、空いた時間を現場の件数や見積に回せる業種を、優先して調べることを提案します。<br><b>調査からの提案：入口の見直し。</b>構想の入口だった浄化槽は、1訪問の単価が低く、県が無料のシステムを配る地域もあります。そこで<b>ビルメン（ビルの設備管理・清掃業）→ 消防設備点検</b>を有力候補として提案します。今の順位は追加調査の優先順位で、決定ではありません。集中する1業種は、15社ヒアリングで5業種を比べたあと事業責任者が決めます。<br><b>最重要の仮説はまだ確かめ切れていません。</b>効果をお金の価値として示せるかは、15社ヒアリングで実際の件数と時間を測って確かめます（→9章）。<br><b>他の業界も見ました。</b>21業種を同じ物差しで比べても提案は変わらず、建物の定期報告（12条）と管理会社の存在で、むしろ強くなりました（→8章）。</p></div>
+  </div>
+</section>
+
+<!-- 仮説チェック -->
+<section id="check">
+  <p class="eyebrow">3｜時給と削減時間</p>
+  <h2>時給は、事務員なら合っている。<br>合わないのは時間の量と、現金になるか。</h2>
+  <p class="lead">ビルメンで書類を清掃員がやる場合は時給¥1,849なので、効果額は仮説より約26%小さくなります<span class="est">推定</span>。設備管理の技術者がやる場合は、仮説の時給に近い値です。</p>
+
+  <div class="group chart mt">
+    <div class="cap">
+      <h3>職種ごとの時給（会社負担込み・従業員10〜99人）</h3>
+      <div class="legend"><span><i style="background:var(--blue)"></i>統計の賃金からFOXが時給に換算</span><span><i style="background:var(--orange-f)"></i>推定</span><span><i style="background:var(--label);width:2px"></i>仮説 ¥2,500</span></div>
+    </div>
+    <div class="hscroll"><div style="min-width:360px">
+      <div class="bars" id="wage"></div>
+      <div class="bars"><div></div><div class="axis" id="wageAxis"></div></div>
+    </div></div>
+    <p class="tiny mt2">出典：厚労省 賃金構造基本統計調査 令和7年。社会保険などの会社負担は約16.5%として上乗せ。大分の事務員は都道府県表からの推定。</p>
+  </div>
+
+  <div class="group chart mt2">
+    <div class="cap">
+      <h3>月の削減時間：仮説と、公開データから出る幅</h3>
+      <div class="legend"><span><i style="background:color-mix(in srgb,var(--blue) 40%,transparent)"></i>公開データから出る幅<span class="est">推定</span></span><span><i style="background:repeating-linear-gradient(135deg,var(--label3) 0 2px,transparent 2px 4px)"></i>公開データから幅を出せない</span><span><i style="background:var(--label);width:2px"></i>事業の仮説</span></div>
+    </div>
+    <div class="hscroll"><div style="min-width:360px">
+      <div class="bars" id="hours"></div>
+      <div class="bars"><div></div><div class="axis" id="hoursAxis"></div></div>
+    </div></div>
+    <p class="tiny mt2">浄化槽は「平均約450基・月110〜150訪問×1回10〜15分」から計算。卸は「月1,000件で月50時間→3分の1」の事例などから、会社の規模で25〜200時間。</p>
+  </div>
+
+  <div class="group pad mt2">
+    <h3>空いた1時間は、どこへ行くか</h3>
+    <p class="small" style="margin-bottom:16px">正社員の給料は固定です。勤務時間内に1時間空いても、払う給料は変わりません。</p>
+    <div class="fork">
+      <div class="src">
+        <div class="ico lg c-gray" style="margin:0 auto 8px"><svg><use href="#i-clock"/></svg></div>
+        <div class="big">1時間</div>
+        <div class="small">AIで減った作業</div>
+      </div>
+      <svg class="arr" width="28" height="28"><use href="#i-arrow"/></svg>
+      <div class="dst">
+        <div class="dstc"><span class="tag" style="background:var(--green-f)">A</span><div><b>残業が減る ＝ 現金が減る</b><p class="small">ただし小規模企業の事務員の残業は<b class="num">月5時間</b>ほど。事務3人でも月約4万円<span class="est">推定</span>。</p></div></div>
+        <div class="dstc"><span class="tag" style="background:var(--gray-f)">B</span><div><b>勤務時間内で空く ＝ お金は減らない</b><p class="small">仮説の削減額 約14〜23万円（月57〜90時間×時給2,500円）の大半はここ。「空いた時間を何に使うか次第」の価値。</p></div></div>
+        <div class="dstc"><span class="tag" style="background:var(--blue)">C</span><div><b>現場や見積に回す ＝ 粗利が増える</b><p class="small">高い価格を払ってもらえるのは、この形にできたときだけ。</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5業種 -->
+<section id="five">
+  <p class="eyebrow">4｜5業種を10項目で</p>
+  <h2>データの厚さと競合の少なさで、<br>はっきり分かれた。</h2>
+
+  <div class="group mt">
+    <div class="hscroll">
+    <table class="matrix">
+      <thead><tr><th style="width:30%">業種</th><th>払う力</th><th>競合の少なさ</th><th>困りごとの証拠</th><th>他業種への広げやすさ</th></tr></thead>
+      <tbody id="matrix"></tbody>
+    </table>
+    </div>
+    <p class="tiny" style="padding:12px 18px 16px;border-top:1px solid var(--sep)"><span class="dots l3"><i></i><i></i><i></i></span> 強い　<span class="dots l2"><i></i><i></i><i></i></span> 中くらい　<span class="dots l1"><i></i><i></i><i></i></span> 弱い　<span class="q">?</span> データなし ｜ 報告書の根拠をもとにした調査側（FOX）の判定。「競合の少なさ」はAIをうたう競合がいるかで判定。色付きの行＝調査から提案する2業種。</p>
+  </div>
+
+  <div class="mt">
+    <div class="seg" role="tablist" aria-label="業種を選ぶ" id="seg">
+      <span class="thumb" id="thumb"></span>
+    </div>
+  </div>
+  <div class="group mt2" id="panel" role="tabpanel" aria-live="polite"></div>
+</section>
+
+<!-- 競合 -->
+<section id="compete">
+  <p class="eyebrow">5｜競合と価格</p>
+  <h2>競合は「いない」のではなく「安い」。</h2>
+  <p class="lead">顧客は新しいAIサービスを、業種ごとにすでにある安いソフトと比べます。AIを使う競合は少なくても、値段の比較相手はいます。</p>
+
+  <div class="group chart mt">
+    <div class="cap">
+      <h3>月額の価格帯（目盛りは10倍ごと）</h3>
+      <div class="legend"><span><i style="background:var(--gray-f)"></i>業種ごとの既存ソフト</span><span><i style="background:var(--indigo)"></i>汎用AI・AI導入支援</span><span><i style="background:var(--green-f)"></i>空いている価格帯<span class="est">推定</span></span></div>
+    </div>
+    <div class="hscroll"><div style="min-width:520px">
+      <div class="bars" id="price"></div>
+      <div class="bars"><div></div><div class="axis" id="priceAxis"></div></div>
+    </div></div>
+  </div>
+
+  <div class="group mt2">
+    <div class="row">
+      <div class="ico c-purple"><svg><use href="#i-people"/></svg></div>
+      <div class="body"><div class="t">JAPAN AI（ジーニーの子会社）</div>
+        <div class="s">2026年2月に大塚商会経由での販売を発表。基本料<b class="num">月13万円〜</b>、利用者1人月1,400円〜。営業・経理など職種別の汎用エージェントが110種類以上。2026年8月に大塚商会が出資。</div>
+        <div class="s" style="margin-top:6px"><span class="pill mute">正面の競合ではない</span> 業種ごとの決まった書類（点検票・マニフェストなど）は扱っていない。大塚商会の基幹システムを使う卸とは重なりうる。</div></div>
+    </div>
+    <div class="row">
+      <div class="ico c-gray"><svg><use href="#i-building"/></svg></div>
+      <div class="body"><div class="t">だいずらぼ</div>
+        <div class="s">実在。神戸市、2008年設立。AI研修・導入の伴走・省力化投資補助金の申請支援。料金と事例は非公開。</div>
+        <div class="s" style="margin-top:6px"><span class="pill mute">脅威は小さい</span> 研修・伴走・補助金をセットで売る、地域のシステム会社の典型。業種に特化していない。</div></div>
+    </div>
+    <div class="row">
+      <div class="ico c-orange"><svg><use href="#i-yen"/></svg></div>
+      <div class="body"><div class="t">中小企業向けのAI導入支援全般</div>
+        <div class="s">相談中心で月10〜20万円、手を動かす伴走は<b class="num">月40〜200万円</b>、研修は1日30万円〜。</div>
+        <div class="s" style="margin-top:6px"><span class="pill ok">ここが空いている</span> 従業員10〜50人の会社には届かない価格。「月3万〜15万円で業務を1つAI化し、運用まで見る」層は手薄<span class="est">推定</span>。</div></div>
+    </div>
+  </div>
+  <div class="group pad mt2" id="japanai">
+    <h3>JAPAN AIから学ぶこと・聞くこと</h3>
+    <p class="small" style="margin-bottom:14px">構想メモでは、サービス構成・導入支援の方法・販売パートナー制度を参考にし、営業担当者との情報交換を検討するとしていました。公開情報で分かった範囲と、情報交換で聞くことを分けます。</p>
+    <div class="grid g3">
+      <div class="abc"><span class="tag" style="background:var(--indigo)"><svg width="18" height="18"><use href="#i-list"/></svg></span><b>サービス構成</b><p class="small">職種別の汎用エージェント110種類以上。大塚商会版は基本料月13万円〜＋1人月1,400円〜。</p><p class="how">業種の法定様式を扱う機能は公開情報になし</p></div>
+      <div class="abc"><span class="tag" style="background:var(--indigo)"><svg width="18" height="18"><use href="#i-people"/></svg></span><b>導入支援の方法</b><p class="small">専任担当による有償サポート（現状分析、環境設定、ユーザー教育、エージェントの追加作成、運用フォロー）。「導入前の課題整理から運用定着まで」一貫して支援。</p><p class="how">構想の7工程とほぼ同じ形。有償サポートの金額は非公開</p></div>
+      <div class="abc"><span class="tag" style="background:var(--indigo)"><svg width="18" height="18"><use href="#i-arrow"/></svg></span><b>販売パートナー制度</b><p class="small">大塚商会へのOEM提供と資本提携（2026年8月）。採用情報では、OEM先や代理店経由の受注が増えているとある。</p><p class="how">マージン率・最低販売数・認定などの条件は非公開</p></div>
+    </div>
+    <h3 class="mt">情報交換で聞くこと（構想メモの6項目）</h3>
+    <p class="small" style="margin-bottom:10px">他社の機密情報や、公開されていない顧客名は求めません。傾向と、公開できる範囲の話だけを聞きます。</p>
+    <div class="group" style="background:var(--fill2)">
+      <div class="qa">
+        <div class="hd">聞き方</div><div class="hd">調査で分かっていること（聞いて確かめる）</div>
+        <div>問い合わせや導入が多いのは、どんな業界・会社の規模ですか（社名なしで）</div><div>生成AIを業務で使う会社は中小32.4%・小規模28.0%（帝国データバンク 2026）。大塚商会経由なので事務系の中堅企業が中心と推定</div>
+        <div>導入の決め手になるのは、時間・コスト・売上のどれが多いですか</div><div>公開データなし</div>
+        <div>見送りの理由で多いものは何ですか。価格の壁はいくらくらいですか</div><div>AIを進めない理由は「専門人材がいない」55.1%、「利点と欠点を評価できない」43.8%（東京商工リサーチ）</div>
+        <div>汎用エージェントでは対応しにくい業務はありますか（業種の様式、現場の写真など）</div><div>点検票・マニフェストなど業種の法定様式を扱う機能は公開情報になし</div>
+        <div>続けて使っている会社に共通することと、やめる会社の典型は何ですか</div><div>公開データなし。中小のSaaS解約の典型は「入力の手間が増える」「補助金の期間後にやめる」「担当者が辞める」と推定</div>
+        <div>代理店や紹介パートナーの条件は。業種向けの上乗せ開発と組み合わせられますか</div><div>条件は非公開。OEM・代理店経由の受注が増えていることだけ公開</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 払ってもらえるか -->
+<section id="pay">
+  <p class="eyebrow">6｜「顧客が払わない」リスク</p>
+  <h2>半分は正しい。<br>払うのは、利益が増える話だけ。</h2>
+  <p class="lead">既存ソフトは月数千円〜数万円です。月5万円を超える価格は、「人を増やさず仕事を増やせる」「見積が増える」といった、利益が増える話でしか通りません。</p>
+
+  <div class="vs mt">
+    <div class="group">
+      <div class="row noico" style="padding-top:16px"><span class="pill bad"><svg><use href="#i-x"/></svg>払わない側の証拠</span></div>
+      <div class="row noico"><div class="body"><div class="big-n">年商5億円未満</div><div class="s">この層だけIT支出が大きく減った（ノークリサーチ）</div></div></div>
+      <div class="row noico"><div class="body"><div class="big-n num">28.0%</div><div class="s">生成AIを業務で使う小規模企業。大企業は46.5%（帝国データバンク 2026）</div></div></div>
+      <div class="row noico"><div class="body"><div class="big-n num">55.1%</div><div class="s">AIを進めない理由「専門人材がいない」。「利点と欠点を評価できない」も43.8%（東京商工リサーチ）</div></div></div>
+      <div class="row noico"><div class="body"><div class="big-n num">43.2%</div><div class="s">無料ツールしか使わない、東京23区の中小企業</div></div></div>
+    </div>
+    <div class="group">
+      <div class="row noico" style="padding-top:16px"><span class="pill ok"><svg><use href="#i-check"/></svg>払う側の証拠</span></div>
+      <div class="row noico"><div class="body"><div class="big-n num">4.04倍</div><div class="s">機械整備・修理の有効求人倍率。足りないのは事務でなく現場（事務職は愛知で0.39倍）</div></div></div>
+      <div class="row noico"><div class="body"><div class="big-n num">441件</div><div class="s">2025年度の人手不足倒産。3年続けて過去最多</div></div></div>
+      <div class="row noico"><div class="body"><div class="big-n num">+14.1pt</div><div class="s">DXに取り組む中小企業のうち「AI活用」の伸び（中小機構調査）</div></div></div>
+      <div class="row noico"><div class="body"><div class="big-n num">88.5%</div><div class="s">ビルメン会員の悩み「現場従業員が集まりにくい」</div></div></div>
+    </div>
+  </div>
+
+  <div class="callout mt2">
+    <div class="ico c-bilmen"><svg><use href="#i-wrench"/></svg></div>
+    <div>
+      <h3>強い売り方：「現場の技術者の書類仕事をなくし、1人で回れる現場を増やす」</h3>
+      <p class="small">技術者が1日1時間の報告書作業をなくせれば、月20時間 × ¥2,600〜2,900 ＝ <b class="num">1人あたり月5.2〜5.8万円</b>。3人いれば月約16〜17万円の価値になる<span class="est">推定</span>。価格を決めるときの材料にする。ビルメンの清掃員なら月20時間×¥1,849＝約3.7万円<span class="est">推定</span>。ただし空いた時間で現場の件数を増やせた場合の話。事務員は採ろうと思えば採れるので、「事務員を1人雇わずに済む」は弱い。</p>
+    </div>
+  </div>
+
+  <div class="grid g3 mt2">
+    <div class="tile"><span class="k">補助金（2026年度〜）</span><span class="v">1/2〜2/3</span><span class="d">「デジタル化・AI導入補助金」（旧IT導入補助金）。上限450万円。登録された支援事業者と組む必要あり（二次情報・公募要領は未確認）。</span></div>
+    <div class="tile"><span class="k">本当の需要が分かる時期</span><span class="v">3年目</span><span class="d">補助は初年度の負担を軽くするだけ。利用料の補助が2年分なら、3年目からは顧客が全額を払う<span class="est">推定</span>。</span></div>
+    <div class="tile"><span class="k">規模感の試算（価格は保留）</span><span class="v num">約280社</span><span class="d">仮に月3万円なら、年1億円の継続売上に必要な顧客数。価格は決めずに、市場の大きさをつかむための目安<span class="est">推定</span>。補助金は初年度の負担しか下げないので、補助なしでも続く価値かを確かめる。</span></div>
+  </div>
+</section>
+
+<!-- 推奨 -->
+<section id="pick">
+  <p class="eyebrow">7｜調査からの提案</p>
+  <h2>提案：ビルメンから入り、<br>同じ仕組みで消防点検へ広げる。</h2>
+  <p class="lead">この順位は、追加調査とヒアリングの優先順位です。事業化の決定ではありません。集中する1業種は、15社ヒアリングで5業種を比べたあと事業責任者が決めます。</p>
+
+  <div class="group pad mt">
+    <h3>共通の仕組み：点検 → 写真 → 報告書 → 不具合の見積</h3>
+    <p class="small" style="margin-bottom:16px">裏側は1つにして、営業では業種ごとの専門性を見せます。</p>
+    <div class="pipe">
+      <div class="step"><div class="ico c-gray"><svg><use href="#i-list"/></svg></div><b>点検・作業</b><p>音声やタップで現場記録。紙からの転記をなくす</p></div>
+      <div class="step"><div class="ico c-gray"><svg><use href="#i-camera"/></svg></div><b>写真</b><p>前後・部位ごとに自動で分類（1現場20〜40枚<span class="est">推定</span>）</p></div>
+      <div class="step"><div class="ico c-gray"><svg><use href="#i-doc"/></svg></div><b>報告書</b><p>発注者・行政ごとに違う様式へ自動で差し込む</p></div>
+      <div class="step"><div class="ico c-bilmen"><svg><use href="#i-yen"/></svg></div><b>不具合の見積</b><p>見つけた不具合を見積に。利益が増えるのはここ</p></div>
+    </div>
+    <div class="chips mt">
+      <span class="chip"><span class="ico c-bilmen"><svg><use href="#i-building"/></svg></span>ビルメン・貯水槽</span>
+      <span class="chip"><span class="ico c-shobo"><svg><use href="#i-flame"/></svg></span>消防設備点検</span>
+      <span class="chip"><span class="ico c-jokaso"><svg><use href="#i-drop"/></svg></span>浄化槽（横展開先）</span>
+    </div>
+  </div>
+
+  <div class="group mt2">
+    <div class="rank top"><span class="no">1</span><div class="ico c-bilmen"><svg><use href="#i-building"/></svg></div><div class="body"><h3>貯水槽清掃を含む総合ビルメン</h3><p class="small">払う力（営業利益率6.1%・民間の契約単価+10%）、人手不足（88.5%）、会社の規模の分布が、5業種で唯一そろう。簡易専用水道の検査で一番多い指摘も「書類の整備保存」（26.6%）。1社の中に貯水槽・設備管理・空気環境測定など点検業務が何種類もあり、社内で広げやすい。</p></div></div>
+    <div class="rank top"><span class="no">2</span><div class="ico c-shobo"><svg><use href="#i-flame"/></svg></div><div class="body"><h3>消防設備点検</h3><p class="small">AIを使う競合が見つからない。報告されていない建物が約53%（2014年ごろの値）あり、不具合の見積で利益を増やす余地が大きいと見込む（未検証）。ただし業者数・規模・単価の基本の数字がないので、ヒアリングで確かめてから入る。</p></div></div>
+    <div class="rank"><span class="no">3</span><div class="ico c-oroshi"><svg><use href="#i-fax"/></svg></div><div class="body"><h3>設備資材卸（条件つき）</h3><p class="small">困りごとの証拠はビルメンと並んで強い。払う力の根拠は大手1社の利益率（7.1%）だけ。FAX受注AIの競合が10社以上いて、月1.5万円まで値下がりしている。取引先の卸から実際の注文データを借りられる場合だけ、別の事業として検討。</p></div></div>
+    <div class="rank"><span class="no">4</span><div class="ico c-jokaso"><svg><use href="#i-drop"/></svg></div><div class="body"><h3>浄化槽保守点検（優先度 低）</h3><p class="small">1訪問 約3,300〜4,400円<span class="est">推定</span>と単価が安く、県が無料のシステムを配る地域もある。ビルメン・消防の仕組みを広げる先として扱う。</p></div></div>
+    <div class="rank"><span class="no">5</span><div class="ico c-sanpai"><svg><use href="#i-truck"/></svg></div><div class="body"><h3>産業廃棄物収集運搬（優先度 低）</h3><p class="small">環境将軍R（1,300社超）・クラウダス（800社超）など既存ソフトが強く、零細が大半。入るなら既存ソフトとの連携が前提になる。</p></div></div>
+  </div>
+</section>
+
+<!-- 他の業界 -->
+<section id="others">
+  <p class="eyebrow">8｜他の業界</p>
+  <h2>21業種を同じ物差しで見た。<br>調査からの提案は変わらず、むしろ強くなった。</h2>
+  <p class="lead">構想メモの残り15業種と、新しく見つけた法定点検の業種6つ、計21業種を、5業種と同じ4つの物差しで比べました（表は、機能として分けたものを含めて24行）。仕組みの価値は「業種の数」ではなく「1つの建物に何枚の法定書類が重なるか」で決まる、とみています<span class="est">推定</span>。</p>
+
+  <div class="group pad mt">
+    <h3>1つの建物に、同じ時期に来る書類</h3>
+    <p class="small" style="margin-bottom:16px">1社に入れば、業種を増やさずに引き受ける書類を増やせます。その書類を最後に集めるのが管理会社です。</p>
+    <div class="bld">
+      <div class="bld-house">
+        <div class="bld-roof"></div>
+        <div class="bld-body">
+          <span class="doc d-main"><svg><use href="#i-drop"/></svg>貯水槽清掃</span>
+          <span class="doc d-main"><svg><use href="#i-flame"/></svg>消防設備点検</span>
+          <span class="doc d-new"><svg><use href="#i-doc"/></svg>12条の定期調査・検査</span>
+          <span class="doc d-add"><svg><use href="#i-bolt"/></svg>発電機の負荷試験</span>
+          <span class="doc d-add"><svg><use href="#i-building"/></svg>外壁調査</span>
+          <span class="doc d-add"><svg><use href="#i-list"/></svg>排水管清掃</span>
+          <span class="doc d-add"><svg><use href="#i-shield"/></svg>害虫防除・フロン</span>
+        </div>
+        <span class="bld-cap">ビルメン・消防の点検会社が引き受ける</span>
+      </div>
+      <svg class="bld-arr" width="28" height="28"><use href="#i-arrow"/></svg>
+      <div class="bld-side">
+        <div class="bld-node n-mgr"><span class="ico c-purple"><svg><use href="#i-people"/></svg></span><div><b>マンション管理会社</b><span>報告を集め、要約し、修繕の見積を出す</span></div></div>
+        <svg class="bld-arr2" width="24" height="24"><use href="#i-arrow"/></svg>
+        <div class="bld-node"><span class="ico c-gray"><svg><use href="#i-building"/></svg></span><div><b>管理組合・オーナー</b><span>修繕を決める（共用部の修繕工事 9,355億円・2024年）</span></div></div>
+      </div>
+    </div>
+    <div class="legend mt2"><span><i style="background:var(--blue)"></i>今の提案</span><span><i style="background:var(--green-f)"></i>新しく見つけた追加の書類（12条）</span><span><i style="background:var(--gray-f)"></i>共通の仕組みに足す機能</span></div>
+  </div>
+
+  <div class="grid g3 mt2">
+    <div class="tile"><span class="pill ok"><svg><use href="#i-check"/></svg>提案を補強</span><span class="k">建築基準法12条の定期調査・検査</span><span class="v">同じ建物の、もう1枚</span><span class="d">発注者も流れ（点検→写真→判定→是正の見積）も同じ。消防の点検ソフトはすでに防火設備の報告書を作れる＝同じ会社が兼業。12条の建物調査に特化したソフトは見つからず。</span></div>
+    <div class="tile"><span class="pill info"><svg><use href="#i-people"/></svg>販売の入口</span><span class="k">マンション管理会社</span><span class="v num">1,735社</span><span class="d">点検を協力業者に出し、報告を組合にまとめる立場。管理会社が仕組みを指定すれば、配下の業者にまとめて広がる<span class="est">推定</span>。効くのは独立系の中堅以下。</span></div>
+    <div class="tile"><span class="pill warn"><svg><use href="#i-arrow"/></svg>次の候補</span><span class="k">3番手 原状回復／4番手 自動車整備</span><span class="v">立会・点検 → 見積</span><span class="d">原状回復は同じ売り先で試せる<span class="est">推定</span>。整備は9.2万事業場・整備売上6.66兆円と最大だが、売り先が別で一から営業が要る。</span></div>
+  </div>
+
+  <div class="group mt2">
+    <div class="hscroll">
+    <table class="matrix" id="omatrix">
+      <thead><tr><th style="width:34%">業種</th><th>払う力</th><th>競合の少なさ</th><th>困りごとの証拠</th><th>仕組みへの適合</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    </div>
+    <p class="tiny" style="padding:12px 18px 16px;border-top:1px solid var(--sep)"><span class="dots l3"><i></i><i></i><i></i></span> 強い　<span class="dots l2"><i></i><i></i><i></i></span> 中くらい　<span class="dots l1"><i></i><i></i><i></i></span> 弱い　<span class="q">?</span> データなし ｜ 各業種の調査メモをもとにした調査側（FOX）の判定。警備の適合は「弱い〜中」を弱いに丸めた。数字の根拠は報告書「業種特化型AI 他業種スクリーニング」に出典つきで載せています。</p>
+  </div>
+
+  <div class="group mt2">
+    <div class="row noico" style="padding-top:16px"><div class="body"><h3 style="margin:0">優先度を下げる業種は、3つの理由のどれかに当たる</h3></div></div>
+    <div class="row"><div class="ico c-gray"><svg><use href="#i-yen"/></svg></div><div class="body"><div class="t">見積の段階がない</div><div class="s">運送（点呼・労務の書類、営業利益率0.6%）、LPガス（保安は無料）、測量・地質（官需と専用ソフトの納品。測量は経常利益率−0.8%）</div></div></div>
+    <div class="row"><div class="ico c-gray"><svg><use href="#i-list"/></svg></div><div class="body"><div class="t">安い基幹ソフトが先にいる</div><div class="s">訪問看護（最大手がAI記録を1訪問20円で販売）、葬儀（専用ソフト14製品以上・月1〜3万円）、警備（配置の管制ソフトが10本以上）、厨房設備保守（メーカー系の販社が点検と報告書を自前で持つ）</div></div></div>
+    <div class="row"><div class="ico c-gray"><svg><use href="#i-chart"/></svg></div><div class="body"><div class="t">利益が薄い</div><div class="s">介護（訪問介護の収支差率9.6%。月5万円は月の収支差の約6分の1で、補助金頼み）、歯科（医療法人でも損益率の中央値3.4%）</div></div></div>
+  </div>
+
+  <p class="small mt2">書類1件あたりの作業時間の公開データは、21業種のどれにもありませんでした。順位は時間ではなく、払う力・競合の値段・公的な困りごとの証拠・見積の段階があるかで付けています。</p>
+</section>
+
+<!-- ヒアリング -->
+<section id="hearing">
+  <p class="eyebrow">9｜15社ヒアリングの設計</p>
+  <h2>時間を測り、効果を4つに分け、<br>二重に数えない。</h2>
+  <p class="lead">会社の規模で、減らせる時間が5倍以上変わります。そこで各業種で小・中・大を1社ずつ選びます。時間は担当者の記憶でなく「先月の件数 × 1件あたりの分数」で出します。60分、できれば点検票・FAX・報告書・請求書の現物を1か月分見せてもらいます。</p>
+
+  <div class="group pad mt">
+    <div class="hscroll"><div class="slots" id="slots"></div></div>
+    <p class="small mt2">元の計画どおり5業種×3社で比べ、集中する1業種はこの比較で決める。〜9人の枠は、零細でも払えるかの確認用。</p>
+  </div>
+
+  <h3 class="mt">共通の質問：作業量を実際に測る</h3>
+  <div class="group mt2">
+    <div class="qa" id="common"></div>
+  </div>
+
+  <h3 class="mt">効果は4つに分ける</h3>
+  <div class="abcd mt2">
+    <div class="abc"><span class="tag" style="background:var(--green-f)">A</span><b>現金支出の削減</b><p class="small">書類のための残業代、外注・派遣・パート、FAX・印刷・郵送、やめられる採用。</p><p class="how">先月の請求書・給与明細の実額で数える</p></div>
+    <div class="abc"><span class="tag" style="background:var(--gray-f)">B</span><b>生産性（空く時間）</b><p class="small">Aに入れなかった削減時間 × 職種別の時給。お金は減らない。</p><p class="how">「お金は減らない価値」として別に示す</p></div>
+    <div class="abc"><span class="tag" style="background:var(--blue)">C</span><b>追加の利益</b><p class="small">1日にあと何件回れるか、見積を出していない不具合、返事の遅れで逃した注文。</p><p class="how">売上でなく粗利で数える</p></div>
+    <div class="abc"><span class="tag" style="background:var(--orange-f)">D</span><b>リスクの削減</b><p class="small">行政の指摘、誤発注・誤配送、許可の期限切れ、担当者が辞めたときの引き継ぎ。</p><p class="how">起きる確率 × 1回の損失額で年額に</p></div>
+  </div>
+
+  <div class="group rules mt2">
+    <div class="row noico"><span class="nb"></span><div class="body"><div class="t">削減した1時間は、A・B・Cのどれか1つにだけ入れる</div><div class="s">残業として消えた時間はA、勤務時間内で空いた時間はB、その時間を現場の追加に使えばC。Cに入れた時間はBから消す。</div></div></div>
+    <div class="row noico"><span class="nb"></span><div class="body"><div class="t">Cは粗利で数える</div><div class="s">改修工事の売上ではなく、材料費と外注費を引いた額。</div></div></div>
+    <div class="row noico"><span class="nb"></span><div class="body"><div class="t">DはAと重ねない</div><div class="s">誤発注をやり直す作業時間はA/Bへ。Dには再配送費・違約金・取引を失う損だけを入れる。</div></div></div>
+  </div>
+
+  <h3 class="mt">業種ごとに足す質問</h3>
+  <div class="group mt2" id="extra"></div>
+</section>
+
+<!-- リスクと体制 -->
+<section id="risk">
+  <p class="eyebrow">10｜リスクと体制</p>
+  <h2>構想メモのリスクを、<br>分かったことと決めることに分けた。</h2>
+  <p class="lead">調査で分かったことと、事業責任者が決めることを並べます。体制や権利は調査では決まらないので、確認事項として残します。</p>
+
+  <div class="group mt">
+    <div class="rk-head"><span></span><span>調査で分かったこと</span><span>事業責任者が決めること・確認すること</span></div>
+    <div class="rk"><div class="rk-t"><span class="ico c-orange"><svg><use href="#i-doc"/></svg></span><b>紙・FAXの会社は導入教育に時間がかかる</b></div>
+      <p>浄化槽では、県の資料に「紙で報告する業者が大部分」「端末がない業者もいる」とある。電子化の壁は端末の費用・紙からの移行作業・社内教育・メリットを感じないこと（徳島県・鳥取県）。中堅・中小企業の受注手段もFAXが最多の37.2%。</p>
+      <p>導入教育を初期費用に含めるか、何回までか。紙の点検票を撮影して読み取る入口から始めるか。</p></div>
+    <div class="rk"><div class="rk-t"><span class="ico c-orange"><svg><use href="#i-wrench"/></svg></span><b>個別対応が増えると利益率が下がる</b></div>
+      <p>報告の様式が、県（浄化槽）・発注者（官公庁の貯水槽清掃の仕様書）・自治体（12条）ごとに違う。様式への対応は手間がかかる分、真似されにくい部分でもある<span class="est">推定</span>。</p>
+      <p>様式は共通の型（テンプレート）として作り、1社だけの個別開発は有償の追加開発にする、という線引きをどこに置くか。</p></div>
+    <div class="rk"><div class="rk-t"><span class="ico c-orange"><svg><use href="#i-arrow"/></svg></span><b>既存システムとの連携</b></div>
+      <p>外部連携（API）を公開で確認できたのはKANNA（kintoneも一般に知られるが公式は未照合）。消防・害虫・電気保安の小さなソフトは、API・代理店制度・OEMのどれも公開情報なし。産廃・卸・整備は既存の基幹システムとの連携が前提になる。</p>
+      <p>各ソフトの体験版で、CSVやPDFを取り出せるかを先に確かめる。連携できない場合は二重入力をどう避けるか。</p></div>
+    <div class="rk"><div class="rk-t"><span class="ico c-orange"><svg><use href="#i-shield"/></svg></span><b>データの利用権限・個人情報</b></div>
+      <p>点検データや写真には、建物の所有者名・入居者名・住所が入りうる。預かって処理する形は「委託」で、顧客の側に委託先を監督する義務が生じる（個人情報保護法25条）。預かったデータをAIの学習や他の顧客向けに使うと、委託の範囲を超えるおそれがある。個人情報保護委員会は2023年6月、AIに入力するデータが学習に使われないことの確認を求めている。</p>
+      <p>契約に「顧客データを学習や他社向けに使わない」と書くか。使うAIサービスが入力を学習に使わない設定かを確認する。</p></div>
+    <div class="rk"><div class="rk-t"><span class="ico c-orange"><svg><use href="#i-yen"/></svg></span><b>再販売権・個別開発の所有権</b></div>
+      <p>代理店・パートナー制度を公開で確認できたのは、帳票アプリのi-Reporterと汎用のkintoneだけ。業種向けの小さなソフトは月3,000円〜数万円で、再販の取り分は小さい<span class="est">推定</span>。受託開発の著作権は、法律の原則では作った側に残る。経産省のモデル契約には「作った側に残す／顧客に移す（汎用部分は作った側に残す）／共有」の3案がある（原文は未照合）。</p>
+      <p>横展開が前提なので、汎用部分を自社に残す条項を契約の雛形に入れるか。既存ソフトは再販より、導入支援と組み合わせて売るか。</p></div>
+    <div class="rk"><div class="rk-t"><span class="ico c-orange"><svg><use href="#i-people"/></svg></span><b>体制と、開発担当者の既存業務への影響</b></div>
+      <p>調査では分からない。構想メモの役割は、事業責任者＝市場選定・営業・事業設計・収益管理・最終判断、樹下＝システム設計・仕組み化・業務設計、バル＝技術検証・構築・連携開発。</p>
+      <p>各メンバーの担当範囲と、週あたりの稼働時間。15社ヒアリングの間に、誰が何をどれだけ受け持つか。</p></div>
+  </div>
+</section>
+
+<!-- 未確定 -->
+<section id="open">
+  <p class="eyebrow">11｜まだ分からないこと</p>
+  <h2>先に埋めるのは、業界の基本の数字。</h2>
+  <div class="group mt">
+    <div class="row"><div class="ico c-gray"><svg><use href="#i-q"/></svg></div><div class="body"><div class="t">消防とビルメンの、1件あたりの作業時間</div><div class="s">公開データなし。ヒアリングで「件数×分数」を取る。</div></div></div>
+    <div class="row"><div class="ico c-gray"><svg><use href="#i-q"/></svg></div><div class="body"><div class="t">消防点検業者の数と市場規模</div><div class="s">点検業には業法がなく、公的な統計がない。ヒアリングでは埋まらないので、業界団体の会員数などで別途調べる。</div></div></div>
+    <div class="row"><div class="ico c-gray"><svg><use href="#i-q"/></svg></div><div class="body"><div class="t">総合ビルメンが消防点検もしているか</div><div class="s">していれば1社で2業種を同時に取れる。</div></div></div>
+    <div class="row"><div class="ico c-gray"><svg><use href="#i-q"/></svg></div><div class="body"><div class="t">2026年度補助金の公募要領の本文</div><div class="s">サイトが開けず未確認。補助率・上限は二次情報の値。</div></div></div>
+  </div>
+  <div class="callout mt2">
+    <div class="ico c-green"><svg><use href="#i-chart"/></svg></div>
+    <div><h3>次に決めること</h3><p class="small">15社で「規模ごとの1件あたりの分数」と「見積につながっていない不具合の割合」を実際の数字で取る。その数字で、業種ごとに1社あたりいくらの価値を出せるかを比べ、集中する1業種と価格を決める材料にする。消防で見積につながっていない不具合が多ければ、消防を1番手にする材料になる。卸から注文データを借りられれば卸を別の事業として足す。<br><b>進む・止める線</b>（1件あたり何分以上／見積につながっていない不具合が何%以上なら進むか）は、ヒアリングの前に事業責任者が決める。</p></div>
+  </div>
+</section>
+
+<section id="src" style="padding-top:40px">
+  <h3>主な出典</h3>
+  <div class="group mt2">
+    <ul class="src-list">
+      <li><a href="https://www.e-stat.go.jp/stat-search/file-download?&statInfId=000040421116&fileKind=4">厚労省 賃金構造基本統計調査 令和7年</a></li>
+      <li><a href="https://www.env.go.jp/press/press_04406.html">環境省 浄化槽の設置状況 2025-03</a></li>
+      <li><a href="https://www.env.go.jp/recycle/jokaso/data/shidoufukyu_chousa/r06/00_r06all.pdf">環境省 浄化槽指導普及調査 令和6年度</a></li>
+      <li><a href="https://www.env.go.jp/content/000385227.pdf">環境省 産業廃棄物行政組織等調査</a></li>
+      <li><a href="https://www.jwnet.or.jp/jwnet/about/assets/files/2026_07jwnet_toukei.pdf">JWNET 電子マニフェスト統計 2026-07</a></li>
+      <li><a href="https://www.fdma.go.jp/publication/hakusho/r7/chapter1/section1/para2/69250.html">令和7年版 消防白書</a></li>
+      <li><a href="https://www.fdma.go.jp/publication/ugoki/assets/2709_17.pdf">消防庁 点検報告率（消防の動き）</a></li>
+      <li><a href="https://www.chusho.meti.go.jp/keiei/gijut/digitalization/download/report_r3.pdf">中小企業庁 電材取引のデジタル化報告</a></li>
+      <li><a href="https://b2bform.nexway.co.jp/case/e-refax/02">因幡電機産業のFAX受注（ネクスウェイ事例）</a></li>
+      <li><a href="https://cdn.j-bma.or.jp/wp-content/uploads/2026/04/16115006/2026_bmiy56_report.pdf">全国ビルメンテナンス協会 第56回実態調査</a></li>
+      <li><a href="https://www.mlit.go.jp/mizukokudo/watersupply/content/001754935.pdf">国交省 簡易専用水道の検査結果</a></li>
+      <li><a href="https://cloud.watch.impress.co.jp/docs/news/2083322.html">JAPAN AI×大塚商会（クラウドWatch）</a></li>
+      <li><a href="https://www.daizu-lab.jp/">だいずらぼ 公式</a></li>
+      <li><a href="https://weel.co.jp/media/faq/generative-ai-consulting-cost/">生成AIコンサルの費用相場（WEEL）</a></li>
+      <li><a href="https://www.itmedia.co.jp/news/article/2605/15/1260515115/">帝国データバンク 生成AI活用調査 2026</a></li>
+      <li><a href="https://it.impress.co.jp/articles/-/28781?page=2">年商別のIT支出（IT Leaders／ノークリサーチ）</a></li>
+      <li><a href="https://www.tsr-net.co.jp/data/detail/1201667_1527.html">AIを進めない理由（東京商工リサーチ）</a></li>
+      <li><a href="https://www.rodo.co.jp/news/221692/">無料ツールのみ43.2%（労働新聞）</a></li>
+      <li><a href="https://www.jil.go.jp/kokunai/blt/backnumber/2026/07/toukei_01.html">有効求人倍率（JILPT 2026年7月号）</a></li>
+      <li><a href="https://www.commercepick.com/archives/90358">人手不足倒産441件（帝国データバンク集計）</a></li>
+      <li><a href="https://sogyotecho.jp/news/20260209dx-research/">中小企業のDX・AI活用（中小機構調査の要約）</a></li>
+      <li><a href="https://hojyokin-portal.jp/subsidies/69392">デジタル化・AI導入補助金 2026（補助金ポータル）</a></li>
+    </ul>
+  </div>
+  <footer>全文の報告書と元の調査メモ7本は、Obsidian vault の 07_Notes/reports と research_notes にあります。FOX 作成。</footer>
+</section>
+
+</main>
+
+<script>
+const IC={jokaso:"i-drop",sanpai:"i-truck",shobo:"i-flame",oroshi:"i-fax",bilmen:"i-building"};
+const ico=(k,cls="")=>`<span class="ico ${cls} c-${k}"><svg><use href="#${IC[k]}"/></svg></span>`;
+const E='<span class="est">推定</span>';
+
+/* 時給グラフ */
+(function(){
+  const max=3400, rows=[
+    ["総合事務員","",2424,0],["営業・販売事務","卸の受発注に近い",2612,0],["機械整備・修理","設備点検に近い",2604,0],["電気工事","",2865,0],
+    ["自家用貨物の運転者","",2298,0],["清掃員","廃棄物処理を含む",2293,0],["ビル・建物清掃員","",1849,0],["大分の事務員","10〜99人規模",[1900,2100],1]];
+  const pct=v=>v/max*100, el=document.getElementById("wage");
+  el.innerHTML=rows.map(([n,sub,v,est])=>{
+    const lo=Array.isArray(v)?v[0]:0, hi=Array.isArray(v)?v[1]:v;
+    const label=Array.isArray(v)?`¥${v[0].toLocaleString()}〜${v[1].toLocaleString()}`:`¥${v.toLocaleString()}`;
+    const col=est?"var(--orange-f)":"var(--blue)";
+    return `<div class="lab">${n}${sub?`<span>${sub}</span>`:""}</div><div class="track">
+      <div class="gridlines">${[1000,2000].map(t=>`<i style="left:${pct(t)}%"></i>`).join("")}</div>
+      <div class="b" style="left:${est?pct(lo):0}%;width:${pct(hi)-(est?pct(lo):0)}%;background:${col}"></div>
+      <div class="ref" style="left:${pct(2500)}%"></div>
+      <div class="v" style="left:calc(${Math.max(pct(hi),pct(2500))}% + 8px)">${label}</div></div>`;}).join("");
+  document.getElementById("wageAxis").innerHTML=[0,1000,2000,2500].map(t=>`<span style="left:${pct(t)}%${t===2500?";color:var(--label);font-weight:700":""}">${t===0?"0":"¥"+t.toLocaleString()}</span>`).join("");
+})();
+
+/* 削減時間グラフ */
+(function(){
+  const max=200, pct=v=>v/max*100;
+  const rows=[
+    ["浄化槽","jokaso",68,[18,38],"平均的な業者で月18〜38時間"],
+    ["産廃","sanpai",80,null,"大手なら80時間も可能・零細には過大（推定）"],
+    ["消防","shobo",75,null,"公開データなし"],
+    ["設備資材卸","oroshi",90,[25,200],"規模で25〜200時間"],
+    ["ビルメン","bilmen",57,null,"公開データなし"]];
+  document.getElementById("hours").innerHTML=rows.map(([n,k,h,r,note])=>`
+    <div class="lab" style="display:flex;align-items:center;gap:8px">${ico(k,"sm")}<span style="display:inline;font-size:13px;color:var(--label)">${n}<span style="display:block;font-size:11px;color:var(--label3)">仮説 ${h}時間</span></span></div>
+    <div class="track tall">
+      <div class="gridlines">${[50,100,150,200].map(t=>`<i style="left:${pct(t)}%"></i>`).join("")}</div>
+      ${r?`<div class="b" style="left:${pct(r[0])}%;width:${pct(r[1])-pct(r[0])}%;background:color-mix(in srgb,var(--blue) 40%,transparent)"></div>`:`<div class="b" style="left:0;width:100%;background:repeating-linear-gradient(135deg,var(--fill) 0 6px,transparent 6px 12px)"></div>`}
+      <div class="ref" style="left:${pct(h)}%"></div>
+      <div class="note">${note}</div>
+    </div>`).join("");
+  document.getElementById("hoursAxis").innerHTML=[0,50,100,150,200].map(t=>`<span class="${t===200?"end":""}" style="left:${pct(t)}%">${t}時間</span>`).join("");
+})();
+
+/* 価格グラフ（対数） */
+(function(){
+  const L=v=>(Math.log10(v)-3)/(Math.log10(2e6)-3)*100;
+  const rows=[
+    ["浄化槽","クラウド台帳",4980,4980,"gray","¥4,980"],
+    ["消防","点検ソフト・ID課金と点検数の段階制",1100,85800,"gray","¥1,100〜8.6万"],
+    ["ビルメン","Smart Attack V3・5ID・税別",15000,18000,"gray","¥1.5万〜1.8万"],
+    ["産廃","1機能あたり・下限は推定",30000,50000,"gray","¥3万〜5万"],
+    ["卸","FAX受注AI 10社以上",15000,120000,"gray","¥1.5万〜12万"],
+    ["空いている帯","業務1つをAI化＋運用",30000,150000,"green","¥3万〜15万"],
+    ["JAPAN AI","大塚商会経由・上限なし",130000,200000,"indigo","¥13万〜"],
+    ["AI伴走支援","手を動かす伴走",400000,2000000,"indigo","¥40万〜200万"]];
+  const col={gray:"var(--gray-f)",green:"var(--green-f)",indigo:"var(--indigo)"};
+  document.getElementById("price").innerHTML=rows.map(([n,s,lo,hi,c,lab])=>{
+    const a=L(lo), w=Math.max(L(hi)-a,1.6), fadeEnd=n==="JAPAN AI";
+    const right=a+w>78;
+    return `<div class="lab">${n}<span>${s}</span></div><div class="track">
+      <div class="gridlines">${[1e3,1e4,1e5,1e6].map(t=>`<i style="left:${L(t)}%"></i>`).join("")}</div>
+      <div class="b" style="left:${a}%;width:${w}%;background:${fadeEnd?`linear-gradient(90deg,${col[c]} 55%,transparent)`:col[c]}"></div>
+      <div class="v" style="${right?`right:calc(${100-a}% + 8px)`:`left:calc(${a+w}% + 8px)`}">${lab}</div></div>`;}).join("");
+  document.getElementById("priceAxis").innerHTML=[[1e3,"¥1,000"],[1e4,"¥1万"],[1e5,"¥10万"],[1e6,"¥100万"]].map(([v,t])=>`<span style="left:${L(v)}%">${t}</span>`).join("");
+})();
+
+/* 5業種データ */
+const IND=[
+ {k:"jokaso",name:"浄化槽",full:"浄化槽保守点検",verdict:["warn","優先度 低"],tag:"行政が紙を嫌がっているのに、単価が安すぎる",
+  score:[1,2,2,3],
+  items:[
+   ["市場・対象数",`浄化槽 7,455,648基・点検の実施率73.9%。点検業の登録は延べ12,129件（専業は3,025件）。実際の会社数は6,000〜9,000社${E}、点検市場は年700〜1,100億円${E}`],
+   ["従業員の規模",`公的データなし。1登録あたり平均約450基で、数名規模が中心${E}`],
+   ["業務の流れ","現場の紙の点検票 → 帰社して転記 → 県ごとに違う様式で報告（埼玉はアプリかExcel、徳島はCSVかQR、鳥取はExcelか紙）"],
+   ["件数・時間",`法定で年3〜4回の点検。平均で月110〜150訪問${E}`],
+   ["実コスト（時給）",`技術者 約¥2,600${E}`],
+   ["既存品・競合","月4,980円のクラウド（約300基まで）。鹿児島では県の検査機関が無料でシステムを配り、ほぼ全業者が電子化"],
+   ["残っている詰まり","紙からの転記、県ごとの様式、法定検査の書類不備（不適正の主な理由が点検・清掃記録の不備）"],
+   ["AIで減らせる時間",`平均で月18〜38時間${E}。68時間が出るのは1,000基以上の会社`],
+   ["利益への影響",`家庭用の点検料は年9,900〜17,600円/基。1訪問 約3,300〜4,400円（年13,200〜17,600円÷4回）${E}。払えるのは月1.5万〜3万円が上限${E}`],
+   ["他業種への広げやすさ","高い（点検 → 記録 → 行政への報告）"]]},
+ {k:"sanpai",name:"産廃",full:"産業廃棄物収集運搬",verdict:["warn","優先度 低"],tag:"市場は大きいが、強い既存ソフトがある",
+  score:[2,1,2,2],
+  items:[
+   ["市場・対象数",`収集運搬の許可 延べ235,225件（重複あり）。電子マニフェスト加入の収集運搬業者 32,309者。実際の事業者は3万〜6万社${E}`],
+   ["従業員の規模","産廃処理部分の平均10人（2010年度）。4人以下が過半との要約もある（2011年度・原本未確認）"],
+   ["業務の流れ","電話・FAXで回収依頼 → 配車 → マニフェスト（廃棄物の管理票）→ 計量伝票の照合 → 請求"],
+   ["件数・時間",`電子マニフェストは年4,751万件（2025年度）。電子化は委託量の約3分の2で、残り3分の1は紙。1社で月約120件${E}`],
+   ["実コスト（時給）",`運転手 ¥2,298・事務 ¥2,424${E}`],
+   ["既存品・競合","環境将軍R 1,300社超、クラウダス 800社超（1機能あたり月5万円）、AI配車の配車頭（配車作業 約2時間→30分）"],
+   ["残っている詰まり","回収依頼の受付、計量伝票・マニフェスト・契約単価の三者照合と請求、処分業者の請求との照合"],
+   ["AIで減らせる時間",`30人・車10台以上の会社なら80時間も可能。零細には過大${E}`],
+   ["利益への影響",`業界の景況判断DI（良い−悪い）は▲20。悩みは修繕費・人手不足・人件費。クラウダスが1機能あたり月5万円（下限3万円は${E}）`],
+   ["他業種への広げやすさ","中くらい（配車・受付は物流と共通）"]]},
+ {k:"shobo",name:"消防",full:"消防設備点検",verdict:["info","2番目"],tag:"AIを使う競合がいない。ただし業界の基本の数字もない",
+  score:[0,3,0,3],
+  items:[
+   ["市場・対象数","点検報告の対象 約385万件、報告率 約47%（2014年ごろ）。業者数・業界の市場規模は公的統計なし（点検業には業法がない）。大手の能美防災は保守点検等で346.4億円"],
+   ["従業員の規模","公的データなし。消防設備士の免状は延べ1,376,123件、点検資格者 約34万人"],
+   ["業務の流れ","年2回の点検 → 点検票 → 消防へ報告 → 不具合 → 見積 → 改修工事"],
+   ["件数・時間","公開データなし"],
+   ["実コスト（時給）",`技術者 約¥2,865${E}`],
+   ["既存品・競合","テンス 月5,500円/ID、FireNET 月1,100〜85,800円、消防くん 月33,000円、消防庁の無料アプリ。AIをうたう製品は見つからず"],
+   ["残っている詰まり","不具合 → 見積、写真整理、テナントとの日程調整"],
+   ["AIで減らせる時間","根拠なし（ヒアリングで測る）"],
+   ["利益への影響","報告されていない建物が約53%（2014年ごろ）＝新規開拓の余地。見積の取りこぼしを減らすのが最大の見込み（未検証。見積→受注の率・粗利は公開データなし）"],
+   ["他業種への広げやすさ","高い（点検 → 報告 → 見積）"]]},
+ {k:"oroshi",name:"設備資材卸",full:"設備資材の専門卸（FAX受注）",verdict:["mute","条件つき"],tag:"困りごとは一番はっきりしているが、すでに競合が多い",
+  score:[2,1,3,2],
+  items:[
+   ["市場・対象数",`団体会員は管材卸 約711社＋電材卸 約700社。狙えるのは数千社${E}`],
+   ["従業員の規模",`団体会員の平均年商35〜50億円（大手が平均を押し上げ）${E}`],
+   ["業務の流れ","FAX → 仕分け → 品番の特定 → メーカーへ照会 → 入力 → 納期の回答"],
+   ["件数・時間","因幡電機の兵庫の課：注文の8〜9割がFAX、営業1人に1日100枚弱。17時以降のFAX約2割の処理に小1時間"],
+   ["実コスト（時給）",`受発注事務 ¥2,612${E}`],
+   ["既存品・競合","FAX受注AIが10社以上（月1.5万〜12万円）。インフォマート、kozokaAI、AICCS、AI受注さん など。手書きの読み取り精度は約80〜85%"],
+   ["残っている詰まり","手書きの略称から品番を特定、メーカーへの在庫・納期照会、電話"],
+   ["AIで減らせる時間",`月25〜200時間${E}。90時間は月1,500〜2,000枚を受ける中堅`],
+   ["利益への影響","大手の営業利益率7.1%。決め手は価格より、基幹システムとの連携と導入の手間"],
+   ["他業種への広げやすさ","卸の中では高い。ただしどこにも競合がいる"]]},
+ {k:"bilmen",name:"ビルメン",full:"貯水槽清掃・ビル設備保守",verdict:["ok","1番目"],tag:"払う力と人手不足の数字が、5業種で一番そろっている",
+  score:[3,3,3,3],
+  items:[
+   ["市場・対象数","貯水槽清掃業の登録 6,435（建築物衛生法の登録で最多）。簡易専用水道（受水槽が10㎥を超える水道）206,856施設。ビルメン市場 約5.51兆円（2024年度）"],
+   ["従業員の規模","常勤20人未満が29.6%、月商3,000万円未満が4割強（業界団体の会員）"],
+   ["業務の流れ","作業 → 部位ごとの前後写真 → 水質検査 → 発注者ごとの様式の報告書 → 請求"],
+   ["件数・時間",`公開データなし。1現場の写真20〜40枚${E}`],
+   ["実コスト（時給）",`清掃員 ¥1,849・配管 ¥2,839${E}`],
+   ["既存品・競合","汎用の現場報告アプリ（Smart Attack V3 月1.5万〜1.8万円/5ID）、ConMas、KANNA。貯水槽に特化したAIは見つからず"],
+   ["残っている詰まり","写真の分類、様式への差し込み、元請向けの書式への変換。検査の指摘で最多は「書類の整備保存」26.6%"],
+   ["AIで減らせる時間","根拠なし（ヒアリングで測る）。事業の仮説は月57時間"],
+   ["利益への影響","営業利益率 6.1%、民間の契約改定 +10.0%。払う余力は5業種で一番はっきりしている"],
+   ["他業種への広げやすさ","高い（会員の82.4%が貯水槽清掃、70.2%が設備管理も請け負う。1社の中に点検業務が何種類もある）"]]}
+];
+
+/* 判定表 */
+(function(){
+  const lv=n=>n===0?'<span class="q">?</span>':`<span class="dots l${n}"><i></i><i></i><i></i></span>`;
+  const lab=["データなし","弱い","中くらい","強い"];
+  document.getElementById("matrix").innerHTML=IND.map(d=>`<tr class="${d.k==="bilmen"||d.k==="shobo"?"pick":""}">
+    <th><span class="who">${ico(d.k)}<span class="full">${d.full}</span><span class="short" style="display:none">${d.name}</span></span></th>
+    ${d.score.map(s=>`<td>${lv(s)}<span class="dl">${lab[s]}</span></td>`).join("")}</tr>`).join("");
+})();
+
+/* セグメントと詳細パネル */
+(function(){
+  const seg=document.getElementById("seg"), thumb=document.getElementById("thumb"), panel=document.getElementById("panel");
+  let cur=4;
+  try{const s=localStorage.getItem("seg5");if(s!==null&&IND[+s])cur=+s;}catch(e){}
+  IND.forEach((d,i)=>{const b=document.createElement("button");b.type="button";b.id="seg-"+d.k;b.setAttribute("role","tab");b.textContent=d.name;b.onclick=()=>show(i);seg.appendChild(b);});
+  function show(i){
+    cur=i;const d=IND[i];
+    try{localStorage.setItem("seg5",i);}catch(e){}
+    thumb.style.transform=`translateX(${i*100}%)`;
+    seg.querySelectorAll("button").forEach((b,j)=>b.setAttribute("aria-selected",j===i));
+    panel.innerHTML=`<div class="panel-head fade">${ico(d.k,"lg")}<div class="body"><span class="pill ${d.verdict[0]}">${d.verdict[1]}</span><h3 style="margin-top:6px">${d.full}</h3><p class="small">${d.tag}</p></div></div>
+      <div class="kv fade">${d.items.map((it,j)=>`<div><span class="n">${String(j+1).padStart(2,"0")}</span>${it[0]}</div><div>${it[1]}</div>`).join("")}</div>`;
+  }
+  seg.addEventListener("keydown",e=>{if(e.key==="ArrowRight"){show((cur+1)%5);seg.children[cur+1].focus()}if(e.key==="ArrowLeft"){show((cur+4)%5);seg.children[cur+1].focus()}});
+  show(cur);
+})();
+
+/* 15社の枠 */
+(function(){
+  const el=document.getElementById("slots");
+  let h=`<div></div><div class="h">小<br><span class="tiny">〜9人</span></div><div class="h">中<br><span class="tiny">10〜29人</span></div><div class="h">大<br><span class="tiny">30人〜</span></div>`;
+  IND.forEach(d=>{h+=`<div class="who">${ico(d.k)}${d.name}</div>`+[1,2,3].map(()=>`<div class="slot">1社</div>`).join("");});
+  el.innerHTML=h;
+})();
+
+/* 共通の質問 */
+(function(){
+  const q=[
+   ["先月、点検（またはFAX・回収・清掃）は何件ありましたか。繁忙期の月は何件ですか","月の件数（平常月と繁忙月）"],
+   ["1件あたり、現場の後の書類（転記・写真整理・報告書・入力）に何分かかりますか。誰がやりますか","1件の分数と、担当が技術者か事務か"],
+   ["その作業は勤務時間内ですか、残業ですか。先月の残業は何時間でしたか","残業時間（＝現金になる部分）"],
+   ["行政や元請に出す様式は何種類ありますか。同じ内容を何回書き写していますか","様式の数と書き写しの回数"],
+   ["今使っているソフトと月額は。やめたソフトはありますか。やめた理由は","価格の基準と解約の理由"],
+   ["ITに月いくらまでなら払いますか。誰が決めますか。補助金を使ったことは","払える上限と、決める人"],
+   ["（点検業のみ）先月、点検や作業で見つけた不具合は何件。そのうち見積を出したのは何件、受注できたのは何件","見積に至らない不具合の割合と受注率"],
+   ["12条の定期調査・防火設備検査・発電機の負荷試験も受けていますか","同じ建物で引き受けられる書類の数"],
+   ["マンション管理会社から指定を受けて点検していますか。報告はどの形（紙・PDF・Excel）で出していますか","管理会社を入口にできるか"]];
+  document.getElementById("common").innerHTML=`<div class="hd">質問</div><div class="hd">ここで取る数字</div>`+q.map(([a,b])=>`<div>${a}</div><div>${b}</div>`).join("");
+})();
+
+/* 業種ごとの質問（開閉） */
+(function(){
+  const ex={
+   jokaso:"契約している基数、県への報告の形（アプリ・Excel・CSV・紙）、県や検査機関から無料のシステムを配られているか、法定検査で書類の不備を言われた件数",
+   sanpai:"車の台数とドライバーの人数、回収依頼のうち電話・FAX・LINEの割合、計量伝票とマニフェストの照合にかかる時間、ドライバーの残業が年960時間の上限に近いか、使っている基幹ソフト",
+   shobo:"年間の点検物件数、1物件あたりの点検料金、改修工事の粗利率、消防への電子申請の割合",
+   oroshi:"1日のFAX枚数（注文・見積・照会の内訳）、手書きの割合、略称から品番を特定するのに迷う割合、メーカーに照会する件数、基幹システムの名前",
+   bilmen:"年間の清掃件数と繁忙月、1現場の写真の枚数、発注者ごとの様式の数、元請に報告書を出し直している件数、消防点検もしているか"};
+  document.getElementById("extra").innerHTML=IND.map((d,i)=>`<details${i===4?" open":""}><summary>${ico(d.k)}${d.full}<svg class="chev" width="16" height="16"><use href="#i-chev"/></svg></summary><div class="inner">${ex[d.k]}</div></details>`).join("");
+})();
+
+/* 他の業界の判定表 */
+(function(){
+  const lv=n=>n===0?'<span class="q">?</span>':`<span class="dots l${n}"><i></i><i></i><i></i></span>`;
+  const G=[
+   ["提案を補強する",[["建築基準法12条の定期調査・検査",[2,3,1,3]],["害虫防除",[1,1,2,3]],["設備工事（管・電気）",[2,1,2,2]]]],
+   ["次の候補（順位は、ビルメン・消防と売り先が重なる順）",[["原状回復工事（3番手）",[2,2,2,3]],["自動車整備（4番手）",[2,2,3,3]],["電気設備保安（条件つき）",[2,2,3,3]],["昇降機の保守・検査・独立系（条件つき）",[3,2,0,2]]]],
+   ["販売の入口",[["マンション管理会社",[2,2,3,3]]]],
+   ["共通の仕組みに足す機能",[["非常用発電機の負荷試験",[3,2,1,3]],["外壁調査（打診・赤外線）",[3,2,1,3]],["給排水管清掃",[1,2,1,3]],["フロン点検",[1,1,0,2]],["厨房のフード・ダクト清掃",[1,0,1,2]],["太陽光の保守（電気保安へ合流）",[2,2,1,2]]]],
+   ["優先度を下げる",[["警備",[2,1,3,1]],["運送",[1,1,3,1]],["測量",[1,1,0,1]],["地質調査",[2,2,0,1]],["訪問看護",[3,1,2,1]],["介護（訪問・通所）",[1,1,3,1]],["歯科",[2,2,2,1]],["葬儀",[2,1,2,1]],["厨房設備保守（本体）",[1,0,1,2]],["LPガス保安",[1,1,0,1]]]]];
+  const lab=["データなし","弱い","中くらい","強い"];
+  document.querySelector("#omatrix tbody").innerHTML=G.map(([g,rows])=>`<tr class="grp"><th colspan="5">${g}</th></tr>`+rows.map(([n,sc])=>`<tr><th>${n}</th>${sc.map(x=>`<td>${lv(x)}<span class="dl">${lab[x]}</span></td>`).join("")}</tr>`).join("")).join("");
+})();
+</script>
+
+</body>
+</html>
